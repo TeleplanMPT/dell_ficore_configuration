@@ -93,12 +93,37 @@ if (is_dir("$sut_log_path")) {
   //$SENDID = "MSS";
   $SIAccount = getSIFromGCF($gcf_path);
   
-  //extract the BTOA Version
-  appendtolog ($iPXE_log_file, "Extract btoaversion"); 
-  $tmp_FICore_version  =  readImageData($gcf_path, $iPXE_log_file);
-  if ($tmp_FICore_version ==""){
-   $tmp_FICore_version = $tmp_FICore_default_version;
+  // Extract the BTOA Version
+  appendtolog($iPXE_log_file, "Extract btoaversion");
+  $tmp_FICore_version = readImageData($gcf_path, $iPXE_log_file);
+
+  if ($tmp_FICore_version == "") {
+      $tmp_FICore_version = $tmp_FICore_default_version;
+  } else {
+      // Parse the fourth character from the end
+      $charFromEnd = strtoupper(substr($tmp_FICore_version, -4, 1));
+
+      switch ($charFromEnd) {
+          case 'A':
+              $tmp_FICore_version = trim(ReadDefaultIni("FICore_default_version_a"));
+              appendtolog($iPXE_log_file, "FICore version adjusted for 'A': $tmp_FICore_version");
+              break;
+          case 'P':
+              $tmp_FICore_version = trim(ReadDefaultIni("FICore_default_version_p"));
+              appendtolog($iPXE_log_file, "FICore version adjusted for 'P': $tmp_FICore_version");
+              break;
+          case 'S':
+              $tmp_FICore_version = trim(ReadDefaultIni("FICore_default_version_s"));
+              appendtolog($iPXE_log_file, "FICore version adjusted for 'S': $tmp_FICore_version");
+              break;
+          default:
+              appendtolog($iPXE_log_file, "No specific case for '$charFromEnd'. Using default: $tmp_FICore_version");
+              break;
+      }
   }
+
+  appendtolog($iPXE_log_file, "Final BootImage value: $tmp_FICore_version");
+
   
   appendtolog ($iPXE_log_file, "SENDID value returned $SENDID");
   appendtolog ($iPXE_log_file, "SIAccount value returned $SIAccount");
