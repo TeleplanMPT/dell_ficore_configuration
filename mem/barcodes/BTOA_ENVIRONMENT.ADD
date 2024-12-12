@@ -1,0 +1,20 @@
+
+# File: BTOA_ENVIRONMENT.ADD
+
+# New variable assignments should _normally_ be added to the top of this
+# file (outside of a section block). When FICore encounters these new
+# variable assignments, it will process them into the master environment.
+# Then, FICore will move them to a section (created if necessary) in this
+# file, that is named for the current FICore phase (i.e. SI). This is done
+# so that retool will work correctly, with respect to the environment.
+
+# Variable declarations in FICore phase 'sections' will _ONLY_ be processed
+# when FICore _initially_ enters that phase. So, if a variable is added
+# directly to the SI section, after FICore is already in the SI phase, the
+# variable declaration will not be processed in the current SI phase. It
+# would be processed if FICore were retooled to SI or an earlier phase,
+# when FICore enters that section after the retool.
+
+# NOTE - FICore phase sections are processed even if the FICore phase is not
+# enabled.
+

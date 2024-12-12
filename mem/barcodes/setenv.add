@@ -1,0 +1,32 @@
+region = AMF
+mfgsite = DAO_ARB
+factory = DAO_ARB
+dell_factory = 0
+btoa_si_mode = 1
+pauseerr = 0
+pausefst = 0
+prephdd = 1
+full_name = factory
+ficoredone_shutdown = 0
+ficoredone_12g_finalization_reboot = 0
+fi_brmmessage = 0
+FI_SCV_BYPASS=1
+spot = 1
+spotquad = YES
+wpespot = 1
+;;Enable/Disable Tests
+wbt_enabled = 1
+cfg_enabled = 1
+post_test_enabled = 1
+wbt_drmk_enabled = 1
+;;WBT Enable Section End
+cfi_raid_enabled = 0
+cfi_presi_enabled = 0
+post_cfi_enabled = 0
+cfi_cfg_enabled = 0
+timesync_enabled = 0
+sitetimeoffset = +00:00
+FI_COLLECT_DISM_LOGS=0
+;QT_SHUTDOWN_INT=1
+;BOOT_SEQ_BYPASS=1
+
